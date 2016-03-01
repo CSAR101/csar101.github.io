@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Data Visualizer</title>
+
+    <!-- dependencies css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- dependencies js -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/papaparse.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/drilldown.js"></script>
+
+    <!-- application css -->
+    <link rel="stylesheet" href="css/visualizer.css">
+
+    <!-- application js -->
+    <script src="js/visualizer.js"></script>
+    <script src="js/visualizer.reader.js"></script>
+    <script src="js/visualizer.facade.js"></script>
+    <script src="js/visualizer.validator.js"></script>
+    <script src="js/visualizer.formatter.js"></script>
+    <script src="js/visualizer.controller.js"></script>
+    <script src="js/visualizer.aggregator.js"></script>
+    <script src="js/visualizer.accumulator.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var controller = new Visualizer.Controller();
+
+            controller.initialize();
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="toolbox">
+    <div class="toolbox-wrapper">
+        <div class="group">
+            <div class="title">Input file</div>
+            <div class="form-group">
+                <input id="input-file" type="file">
+            </div>
+        </div>
+        <div class="group">
+            <div class="title">Aggregator
+                <i class="glyphicon glyphicon-question-sign"
+                   title="Aggregators are responsible for creating groups of data that can be accumulated into larger series."></i>
+            </div>
+            <div class="form-group">
+                <label for="aggregator-label">
+                    Field label
+                    <i class="glyphicon glyphicon-question-sign"
+                       title="Here you can specify what field of the CSV file to use as a label for the drilldown columns."></i>
+                </label>
+                <input type="text" id="aggregator-label" placeholder="insert a single field name">
+            </div>
+            <div class="form-group">
+                <label for="aggregator-fields">
+                    Aggregating fields
+                    <i class="glyphicon glyphicon-question-sign"
+                       title="You can arbitrarily aggregate data by filling in a number of fields here."></i>
+                </label>
+                <textarea id="aggregator-fields" rows="3" placeholder="one field per line"></textarea>
+            </div>
+        </div>
+        <div class="group">
+            <div class="title">Accumulator
+                <i class="glyphicon glyphicon-question-sign"
+                   title="Accumulators summarizes aggregated, fine-grained data into larger series. As accumulators works over aggregated data, the only available fields here are those used by the aggregator"></i>
+            </div>
+            <div class="form-group">
+                <label for="accumulator-label">
+                    Field label
+                    <i class="glyphicon glyphicon-question-sign"
+                       title="Here you can specify what field used by the aggregator to use as a label for the series columns."></i>
+                </label>
+                <input type="text" id="accumulator-label" placeholder="insert a single field name">
+            </div>
+            <div class="form-group">
+                <label for="accumulator-fields">
+                    Accumulating fields
+                    <i class="glyphicon glyphicon-question-sign"
+                       title="You can arbitrarily accumulate fine-grained data by filling in a number of fields, used by the aggregator, here."></i>
+                </label>
+                <textarea id="accumulator-fields" rows="2" placeholder="one field per line"></textarea>
+            </div>
+        </div>
+        <submit id="process" class="btn btn-primary center-block">Process</submit>
+    </div>
+</div>
+
+<div id="viewport">
+</div>
+
+<footer>
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-brand">Amit - Project #3</div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Extracting data from csv file and displaying it visually</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

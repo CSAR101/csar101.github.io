@@ -1,0 +1,2 @@
+var Visualizer = new function () {
+};
